@@ -1,0 +1,40 @@
+<view class="container">
+  <!-- 用户登录测试 -->
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view class='otherinfo'>
+    <text class='useridinfo'>我的ID：  {{userId}}</text>
+    <text class='flowernuminfo'>鲜花数：  {{liveUserInfo.flowerNum}}</text>
+    <text class='balanceinfo'>我的余额：  {{liveUserInfo.balance}}</text>
+  </view>
+  <view class='funcbutton'>
+    <view class='buyflower'>
+      <button type="primary" bindtap="buyflower_input">买花</button>
+      <modal hidden="{{buyflower_hiddenmodalput}}" title="购买鲜花" confirm-text="确认" cancel-text="取消" bindcancel="buyflowerCancel" bindconfirm="buyflowerConfirm">
+        <input bindinput='bindbuyFlowersNum' type='text' placeholder="请输入要购买的鲜花数量" class='setborder'/>
+        <text class='getbalance'>当前余额:{{liveUserInfo.balance}}</text>
+      </modal>
+    </view>
+    <view class='sellflower'>
+      <button type="primary" bindtap="sellflower_input">卖花</button>
+      <modal hidden="{{sellflower_hiddenmodalput}}" title="卖出鲜花" confirm-text="确认" cancel-text="取消" bindcancel="sellflowerCancel" bindconfirm="sellflowerConfirm">
+        <input type='text' bindinput='bindsellFlowersNum' placeholder="请输入要卖出的鲜花数量" class='setborder'/>
+        <text class='getflowernum'>您当前拥有的鲜花数为{{liveUserInfo.flowerNum}}</text>
+      </modal>
+    </view>
+    <view class='chongzhi'>
+      <button type="primary" bindtap="chongzhi_input">充值</button>
+      <modal hidden="{{chongzhi_hiddenmodalput}}" title="充值" confirm-text="确认" cancel-text="取消" bindcancel="chongzhiCancel" bindconfirm="chongzhiConfirm">
+        <input type='text' placeholder="请输入充值金额" class='setborder'/>
+      </modal>
+    </view>
+    <view class='tixian'>
+      <button type="primary" bindtap="tixian_input">提现</button>
+      <modal hidden="{{tixian_hiddenmodalput}}" title="提现" confirm-text="确认" cancel-text="取消" bindcancel="tixianCancel" bindconfirm="tixianConfirm">
+        <input type='text' placeholder="请输入提现金额" class='setborder'/>
+      </modal>
+    </view>
+  </view>
+</view>

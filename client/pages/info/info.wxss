@@ -1,0 +1,88 @@
+page{
+  background: #f6f6f6;
+}
+.container {
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100rpx;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 130rpx;
+  height: 130rpx;
+}
+
+.userinfo-nickname {
+  margin-top: 20rpx;
+  font-size: 32rpx;
+  color: black;
+}
+
+.userinfo-nickname .button{
+  border: 1px solid black;
+}
+
+.userinfo-nickname::after {
+  border: none;
+}
+
+
+.otherinfo {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.useridinfo {
+  margin-top: 100rpx;
+}
+
+.flowernuminfo {
+  margin-top: 100rpx;
+}
+
+.balanceinfo {
+  margin-top: 100rpx;
+}
+
+.userinfo-avatar {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.userinfo-nickname {
+  margin-top: 40rpx;
+  font-size: 36rpx;
+  color: black;
+}
+
+.funcbutton {
+  width: 80%;
+  margin-top: 80rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.setborder {
+  border: #FFCC00 1px solid;
+}
+
+.getflowernum {
+  color: black;
+}
+
+.getbalance {
+  color: black;
+}

@@ -1,0 +1,73 @@
+/* pages/create/create.wxss */
+.create {
+  margin-top: 100rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.hint {
+  margin-top: 100rpx;
+  font-size: 48rpx;
+}
+
+.create-btn {
+  margin-top: 100rpx;
+  background-color: #FFCC00;
+  color: #fff;
+  text-align: center;
+  font-size: 48rpx;
+  font-family: Microsoft Yahei;
+}
+
+.createliveroom {
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  justify-content: space-around;
+}
+
+.liveroomid {
+  color: black;
+}
+
+.liveroomintro {
+  color: black;
+}
+
+.getintro {
+  border:#FFCC00 1px solid;
+  border-color: #FFCC00;
+}
+
+.liveroomkind {
+  color: black;
+  align-self: center;
+}
+
+.chosentype {
+  color: black;
+  margin-left: 80rpx;
+}
+
+.yulan {
+  color: black;
+  text-align: center;
+}
+
+.fengmian {
+  display: flex;
+}
+
+.eg {
+  width: 50%;
+  height: 220rpx;
+}
+
+.zidingyi {
+  width: 40%;
+  height: 220rpx;
+  font-size: 36rpx;
+}

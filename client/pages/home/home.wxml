@@ -1,0 +1,24 @@
+<view class="live-container">
+  <view class="navbar">
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+  </view>
+  <view wx:if="{{currentTab!=1}}" wx:for="{{liveList}}" wx:for-item="item" wx:for-index="idx">  
+    <view wx:if="{{currentTab==0||navbar[currentTab]==item.liveType}}" class="live-item" catchtap='onTapToLive' data-live-room-id="{{item.liveRoomId}}">
+      <view class='live-anchor-box'>
+        <image src="{{item.avatar}}"></image>
+        <text>{{item.nickName}}</text>
+      </view>
+      <view class="live-img">
+        <image src="{{item.imgUrl}}" class="live-image"></image>
+      </view>
+      <view class="live-title">
+        <text>{{item.liveRoomIntro}}</text>
+      </view>
+    </view>
+  </view>
+  <!--搜索分页-->
+  <view class='search' wx:if="{{currentTab==1}}">
+  <input class='keyboard-input' auto-focus='true' value="{{keyboardSearchValue}}" bindconfirm="searchLiveRoom" bindinput='bindSearchInput' placeholder="输入房间号"></input>
+  <view class="submit-btn" catchtap="searchLiveRoom">搜索</view>
+  </view>
+</view>

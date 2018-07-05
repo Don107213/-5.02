@@ -1,0 +1,21 @@
+<!--pages/create/create.wxml-->
+<view class='create'>
+  <text class='hint'>您还没有正在进行的直播</text>
+  <button class='create-btn' bindtap="createliveroom">点击创建直播间</button>
+  <modal hidden="{{createliveroom_hiddenmodalput}}" title="创建直播间" confirm-text="确认" cancel-text="取消" bindcancel="createliveroom_cancel" bindconfirm="createliveroom_confirm"> 
+    <view class='createliveroom'>
+      <text class='liveroomid'>您的直播间ID为：{{userId}}</text>
+      <text class='liveroomintro'>请在下方输入直播间描述：</text>
+      <input bindinput='bindLiveRoomIntro' type='text'placeholder="不超过10个字" class='getintro'/> 
+      <picker class='liveroomkind' mode="selector" range="{{liveroomtype}}" value="{{index}}" bindchange="listenerPickerSelected">
+      点击此处选择直播类型
+      <text class='chosentype'>{{liveroomtype[index]}}</text>
+      </picker>
+      <text class='yulan'>直播间封面预览</text>
+      <view class='fengmian'>
+        <image src="{{tempFilePaths}}" class='eg'></image>
+        <button class='zidingyi' bindtap="chooseimage">自定义直播间封面</button>
+      </view>
+    </view>
+  </modal>
+</view>

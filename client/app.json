@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/info/info",
+    "pages/create/create",
+    "pages/home/home",   
+    "pages/live/live"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFCC00",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "borderStyle": "white",
+    "selectedColor": "#4A6141",
+    "color": "#333",
+    "backgroundColor": "#fff",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "主页",
+        "iconPath": "images/icon/hometest1.png",
+        "selectedIconPath": "images/icon/hometest2.png"
+      },
+      {
+        "pagePath": "pages/create/create",
+        "text": "我的直播",
+        "iconPath": "images/icon/createtest1.png",
+        "selectedIconPath": "images/icon/createtest2.png"
+      },
+      {
+        "pagePath": "pages/info/info",
+        "text": "我的信息",
+        "iconPath": "images/icon/infotest1.png",
+        "selectedIconPath": "images/icon/infotest2.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,140 @@
+<view class="live-title">
+  <image wx:if="{{liveRoomId!=userId}}" src="{{liveRoomInfo.avatar}}"></image>
+  <text wx:if="{{liveRoomId!=userId}}">{{liveRoomInfo.nickName}}</text>
+  <text wx:if="{{liveRoomId!=userId}}">ID:{{liveRoomId}}</text>
+  <!--<text>直播共{{liveList.length}}条</text>-->
+  <view class="tool">
+    <view class="tool-item" catchtap="onUpTap" data-live-id="{{live.data.liveId}}">
+      <image wx:if="{{upStatus}}" src="/images/icon/wx_app_liked.png" />
+      <image wx:else src="/images/icon/wx_app_like.png" />
+      <text>{{liveRoomInfo.upNum}}</text>
+    </view>
+    <view class="tool-item" data-live-id="{{live.data.liveId}}">
+      <modal hidden="{{sendFlowers_hiddenmodalput}}" title="向主播献花" confirm-text="献花" cancel-text="取消" catchcancel="sendFlowers_cancel" catchconfirm="sendFlowers_confirm">
+        <input bindinput='bindSendFlowersNum' type='text' placeholder="输入献花数量" class='setborder'/>
+        <text class='getflowernum'>您当前拥有的鲜花数为{{liveUserInfo.flowerNum}}</text>
+      </modal>
+      <image catchtap="sendFlowersModal" src="/images/icon/flower.png" />
+      <text catchtap="sendFlowersModal">{{liveRoomInfo.flowerNum}}</text>
+    </view>
+    <view class="tool-item">
+      <image src="/images/icon/wx_app_view.png"></image>
+      <text>{{liveRoomInfo.viewNum}}</text>
+    </view>
+    <view class="tool-item" catchtap="onWarnTap" data-live-id="{{live.data.liveId}}">
+      <image wx:if="{{!warnStatus}}" src="/images/icon/wx_app_exl.png" />
+      <image wx:else src="/images/icon/wx_app_xx.png" />
+      <text>{{liveRoomInfo.warnNum}}</text>
+    </view>
+    <view wx:if="{{liveRoomId==userId}}" class="tool-item1">
+      <text catchtap="wantdeleteLiveRoom">关闭直播间</text>
+      <modal hidden="{{delete_hiddenmodalput}}" title="关闭直播间" confirm-text="确认" cancel-text="取消" bindcancel="deleteCancel" bindconfirm="deleteConfirm">
+      </modal>
+    </view>
+  </view>
+</view>
+<!--直播栏在这-->
+<view class="comment-detail-box">
+  <view class="comment-main-box">
+    <block wx:for="{{liveList}}" wx:for-item="item" wx:for-index="idx">
+      <view class="comment-item">
+        <view class="comment-body">
+          <view class="comment-txt" wx:if="{{item.txt}}">
+            <text>{{item.txt}}</text>
+          </view>
+          <view class="comment-img" wx:if="{{item.imgUrl}}">
+            <block>
+              <image src="{{item.imgUrl}}" mode="aspectFill" catchtap="previewImg" data-comment-idx="{{idx}}" data-img-url="{{item.imgUrl}}"></image>
+            </block>
+          </view>
+        </view>
+        <view class="comment-time">{{item.create_time}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!--评论栏-->
+<view class="comment-detail-box02">
+  <view class="comment-main-box">
+    <block wx:for="{{comments}}" wx:for-item="item" wx:for-index="idx">
+      <view class="comment-item">
+        <view class="comment-item-header">
+          <view class="left-img">
+            <image src="{{item.imgUrl}}"></image>
+          </view>
+          <view class="right-user">
+            <text class="user-name">{{item.nickName}}</text>
+          </view>
+          <view class="comment-time">{{item.create_time}}</view>
+        </view>
+        <view class="comment-body">
+          <view class="comment-txt" wx:if="{{item.txt}}">
+            <text>{{item.txt}}</text>
+          </view>
+          <view class="comment-voice" wx:if="{{item.content.audio && item.content.audio.url}}">
+            <view data-url="{{item.content.audio.url}}" class="comment-voice-item" catchtap="playAudio">
+              <image src="/images/icon/wx_app_voice.png" class="voice-play"></image>
+              <text>{{item.content.audio.timeLen}}''</text>
+            </view>
+          </view>
+          <view class="comment-img" wx:if="{{item.content.img.length!=0}}">
+            <block wx:for="{{item.content.img}}" wx:for-item="img" wx:for-index="imgIdx">
+              <image src="{{img}}" mode="aspectFill" catchtap="previewImg" data-comment-idx="{{idx}}" data-img-idx="{{imgIdx}}"></image>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!--输入框-->
+<view class="input-box" wx:if="{{liveRoomId!=userId}}">
+  <view class="send-msg-box">
+    <view class="input-item">
+      <input class="input1 keyboard-input" value="{{keyboardInputValue}}" bindconfirm="submitComment" bindinput="bindCommentInput" placeholder='编辑您的评论' />
+    </view>
+    <view class="submit-btn" catchtap="submitComment">发送</view>
+  </view>
+</view>
+
+<!--输入框-->
+<view class="input-box" wx:else>
+  <view class="send-msg-box">
+    <view class="input-item">
+      <input class="input1 keyboard-input" value="{{keyboardInputValue}}" bindconfirm="submitComment" bindinput="bindCommentInput" placeholder="点击编辑直播内容" />
+    </view>
+    <image class="comment-icon add-icon" src="/images/icon/wx_app_add.png" catchtap="sendMoreMsg"></image>
+    <view class="submit-btn" catchtap="submitComment">发送</view>
+  </view>
+  <view class="send-more-box" hidden="{{!sendMoreMsgFlag}}">
+    <!--选择图片和拍照的按钮-->
+    <view class="send-more-btns-main">
+      <view class="more-btn-item" catchtap="chooseImage" data-category="album">
+        <view class="more-btn-main">
+          <image src="/images/icon/wx_app_upload_image.png"></image>
+        </view>
+        <text>照片</text>
+      </view>
+      <view class="more-btn-item" catchtap="chooseImage" data-category="camera">
+        <view class="more-btn-main">
+          <image src="/images/icon/wx_app_camera.png"></image>
+        </view>
+        <text>拍照</text>
+      </view>
+    </view>
+    <!--显示选择的图片-->
+    <view class="send-more-result-main" hidden="{{chooseFiles.length==0}}">
+      <block wx:for="{{chooseFiles}}" wx:for-index="idx">
+        <!--如果删除其中一个，则对其添加deleting 样式；-->
+        <view class="file-box {{deleteIndex==idx?'deleting':''}}">
+          <view class="img-box">
+            <image src="{{item}}" mode="aspectFill"></image>
+            <icon class="remove-icon" type="cancel" size="23" color="#B2B2B2" catchtap="deleteImage" data-idx="{{idx}}" />
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

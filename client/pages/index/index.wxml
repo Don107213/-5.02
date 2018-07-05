@@ -1,0 +1,10 @@
+<view class="container">
+  <image class="avatar"src="a.png"></image>
+  <text class="motto">你应该不知道</text>
+   <text class="motto">哆啦A梦的口袋里</text>
+   <text class="motto">还有种类繁多的直播吧</text>
+   <text class="motto">👇</text>
+  <view class="journey-container">
+    <button class="journey" open-type="getUserInfo" bindgetuserinfo="_getUserInfo">开启直播之旅</button>
+  </view>
+</view>
